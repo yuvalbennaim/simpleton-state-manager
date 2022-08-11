@@ -6,6 +6,7 @@ In fact, it's so simple, that simple is in it's name.
 Whether you use an MVC framework such as React, Angular, Vue, WebComponents or plain Vanilla Javascript,
 this universal, lightweight solution is all you need to manage your Application's Frontend state, no matter how complex it gets.
 
+For any questions, comments or complaints: **yuvalbenniam@gmail.com**
 
 ## The Fundametals
 
@@ -19,8 +20,6 @@ Once you instanciate a SimpletonStateManager you can use it to store an almost l
 retrieve them as needed and subscribe to their changes.
 
 You can even store functions as models.
-
-For any questions, comments or complaints: **yuvalbenniam@gmail.com**
 
 ### Instanciating a SimpletonStateManager
 
