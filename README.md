@@ -111,3 +111,5 @@ npm install simpleton-state-manager
 Under Construction...
 
 Only example I have at this moment is a very basic vanilla JS / WebComponents which I hope to expand upon in the near future.
+
+zzz
