@@ -1,4 +1,4 @@
-// import SimpletonStateManager from "./SimpletonStateManager.js";
+import SimpletonStateManager from "/@/simpleton-state-manager/src/SimpletonStateManager.js";
 
 class comp extends HTMLElement {
     

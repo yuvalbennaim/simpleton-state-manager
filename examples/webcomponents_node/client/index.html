@@ -2,11 +2,18 @@
 <html>
     <head>
         <title>SampleApp</title>
-        <script src="/@/simpleton-state-manager/src/SimpletonStateManager.js"></script>
         <script type="module" src="./sample-app.js"></script>
 
         <script type="module">
-            (() => {
+            // (() => {
+                
+            // })();
+
+            import SimpletonStateManager from "/@/simpleton-state-manager/src/SimpletonStateManager.js";
+
+            window.addEventListener('DOMContentLoaded', (event) => {
+                console.log('DOM fully loaded and parsed');
+
                 const store = new SimpletonStateManager(); 
                 const modelOne = { name: 'modelOne', value: 1 };
                 store.setModel('modelOne', modelOne);
@@ -29,8 +36,7 @@
                     const func = store.getModel('funcOne');
                     func();
                 });
-            })();
-
+            });
             
         </script>
     </head>
