@@ -108,6 +108,9 @@ npm install simpleton-state-manager
 
 ## Examples
 
-Under Construction...
+Switch to the /examples folder
 
-The only example I have at this moment is a very basic vanilla JS / WebComponents which I hope to expand upon in the near future.
+### webcomponents_node - Example of a vanilla JS / WebComponents implementation running on Node.JS.
+
+### A React example is under construction...
+

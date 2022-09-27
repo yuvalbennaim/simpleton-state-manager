@@ -1,53 +1,16 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>SampleApp</title>
-        <script type="module" src="./sample-app.js"></script>
-
-        <script type="module">
-            // (() => {
-                
-            // })();
-
-            import SimpletonStateManager from "/@/simpleton-state-manager/src/SimpletonStateManager.js";
-
-            window.addEventListener('DOMContentLoaded', (event) => {
-                console.log('DOM fully loaded and parsed');
-
-                const store = new SimpletonStateManager(); 
-                const modelOne = { name: 'modelOne', value: 1 };
-                store.setModel('modelOne', modelOne);
-
-                store.setModel('funcOne', function() {
-                    console.log('funcOne says hello');
-                });
-                
-                /*simulate request with latency*/
-                const modelMaker = new Promise(function(resolveFunc, rejectFunc) {
-                    const model = { name: 'modelOne', value: 9 };
-                    setTimeout(function(){ resolveFunc(model); }, 5000);
-                });
-
-                modelMaker.then(function(value) {
-                    store.setModel('modelMaker', value);
-                    const models = store.getModelList();
-                    console.log('Models', models);
-
-                    const func = store.getModel('funcOne');
-                    func();
-                });
-            });
-            
-        </script>
+        <title>SimpletonSampleApp</title>
+        <link href="./css/app.css" rel="stylesheet">
+        <script type="module" src="./todo-app.js"></script>
+        <script type="module" src="./todo-list-view.js"></script>
+        <script type="module" src="./login-view.js"></script>
+        <script type="module" src="./todo-header.js"></script>
     </head>
 
     <body>
-        Welcome to the Sample App.
-
-        This example will demonstrate how to use the StateManager in the simplest form
-        of Plain Javascript and WebComponents
-
-        <sample-app></sample-app>
+        <todo-app></todo-app>
     </body>
 </html>
 

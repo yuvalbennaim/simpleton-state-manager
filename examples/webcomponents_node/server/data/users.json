@@ -1,0 +1,16 @@
+[
+	{
+		"name": "Ben",
+		"todos": [
+			{ "title": "Take out the garbage", "category": "House", "priority": "High", "status": "open" },
+			{ "title": "Wash Car", "category": "Cars", "priority": "Medium", "status": "closed" },
+			{ "title": "Do Laundry", "category": "House", "priority": "Low", "status": "open" },
+			{ "title": "Do Homewoork", "category": "School", "priority": "Medium", "status": "open" },
+			{ "title": "File Report", "category": "Work", "priority": "Low", "status": "open" }    
+        ]
+	},
+	{
+		"name": "Jerry",
+		"todos": []
+	}
+]
