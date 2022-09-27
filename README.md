@@ -112,7 +112,6 @@ Switch to the /examples folder and view the README file
 
 ### webcomponents_node
 Example of a vanilla JS / WebComponents implementation running on Node.JS.
-Valid logins are "ben" or "jerry" any other will throw an error.
 
 ### React
 A React example is under construction...
