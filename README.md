@@ -1,4 +1,4 @@
-# Simpleton State Manager - WORK IN PROGRESS!
+# Simpleton State Manager
 
 A super simple State Manager for your modern Web Application.
 In fact, it's so simple, that simple is in it's name.
@@ -108,7 +108,7 @@ npm install simpleton-state-manager
 
 ## Examples
 
-Switch to the /examples folder
+Switch to the /examples folder and view the README file
 
 ### webcomponents_node
 Example of a vanilla JS / WebComponents implementation running on Node.JS.
