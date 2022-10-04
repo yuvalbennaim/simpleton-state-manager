@@ -7,6 +7,7 @@ class comp extends HTMLElement {
         this.attachShadow({mode: 'open'});
         this.error = false;
         this.store = new SimpletonStateManager(); 
+        this.styleStr = this.store.getModel("STYLE"); //only need to do this once
         this.render();
     }
 
@@ -34,7 +35,7 @@ class comp extends HTMLElement {
 
     render() {
         let html = `
-            <link href="./css/app.css" rel="stylesheet">
+            <style>${this.styleStr}</style>
             <div class="login-container">
                 <table class="full-width login-table-outer">
                     <tr> 

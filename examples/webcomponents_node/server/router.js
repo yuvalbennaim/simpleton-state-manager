@@ -31,7 +31,7 @@ router.get('/todos', (req, res, next) => {
     let userRec = authenticateUser(userParam);
     
 	if(userRec != null) {
-		res.json({"todos": userRec.todos});
+		res.json({"user": userRec});
 	} 
 	else {
 		res.status(500);
