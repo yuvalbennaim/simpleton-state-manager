@@ -42,7 +42,7 @@ class comp extends HTMLElement {
             html += `
               <tr>
                 <td>
-                  <input type"text" id="title_${index}" value="${todo.title}" class="todo-input">
+                  <input type="text" id="title_${index}" value="${todo.title}" class="todo-input">
                 </td>
                 <td>
                 <select class="todo-select" id="category_${index}" value="${todo.category}">

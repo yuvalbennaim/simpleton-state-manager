@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import useStateStore from './hooks/useStateStore';
 import './App.css';
-import LoginForm from "./components/loginForm";
+import LoginForm from "./components/LoginForm";
 import ToDoView from "./components/ToDoView";
 
 function App() {
@@ -9,9 +9,9 @@ function App() {
   const store = useStateStore();
 	const [user, setUser] = useState();
 
-  const mockData = {
-    ben: {
-      name: "ben",
+  const mockData = { //emulate API call to get the ToDo list
+    Ben: {
+      name: "Ben",
       categories: ["House", "Cars", "School", "Work"],
       priorites: ["High", "Medium", "Low"],
       todos: [
@@ -22,8 +22,8 @@ function App() {
         { "title": "File Report", "category": "Work", "status": "open" }    
       ]
     },
-    jerry: {
-      name: "jerry",
+    Jerry: {
+      name: "Jerry",
       categories: ["House", "Cars", "Work"],
       priorites: ["High", "Medium", "Low"],
       todos: []
@@ -31,25 +31,28 @@ function App() {
   };
 
   store.setModel("MOCK_DATA", mockData);
-
-  store.subscribe('USER', 'todo-app', (model) => { // subscribe to the user model and re-render when it updates
-    console.log('USER Model changed', model);
-    setUser(model);
-    getTodos(model);    
-  });
+  
 
 	const getTodos = (user) => {
     new Promise((resolveFunc, rejectFunc) => {
-      let todos = mockData[user];
-      console.log("getTodos", user, todos);
-      setTimeout(() => { resolveFunc(todos); }, 1000);
-    }).then(function(todos) {
-      store.setModel("TODOS", todos);
+      let data = mockData[user];
+      console.log("getTodos", user, data);
+      setTimeout(() => { resolveFunc(data); }, 1000);
+    }).then(function(data) {
+      store.setModel("TODOS", data.todos);
+      store.setModel('CATEGORIES', data.categories);          
+      store.setModel('PRIORITES', data.categories);  
     }); 
 	};
 
 	useEffect(() => {
     console.log('App mounted...');
+
+    store.subscribe('USER', 'todo-app', (model) => { // subscribe to the user model and re-render when it updates
+      console.log('USER Model changed', model);
+      setUser(model);
+      getTodos(model);    
+    });
 	}, []);
 
 	return (

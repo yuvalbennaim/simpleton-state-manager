@@ -4,7 +4,7 @@ import useStateStore from '../hooks/useStateStore';
 const LoginForm = () => {
     const store = useStateStore();
 	const [error, setError] = useState(false);
-    const [name, setFirstName] = useState("ben");
+    const [name, setName] = useState("Ben");
 
     const login = async () => {        
         setError(false);
@@ -50,7 +50,7 @@ const LoginForm = () => {
                                         </tr>
                                         <tr>
                                             <td>
-                                                <input  name="name" className="login-form-control" type="text" value={name} onChange={e => setFirstName(e.target.value)} placeholder="User Name..."/>
+                                                <input  name="name" className="login-form-control" type="text" value={name} onChange={e => setName(e.target.value)} placeholder="User Name..."/>
                                             </td>
                                         </tr>
                                         <tr>
@@ -67,7 +67,7 @@ const LoginForm = () => {
                                 </table>
                             </td>
                         </tr>
-                        </tbody>
+                    </tbody>
                 </table>
             </div>
 		</div>
