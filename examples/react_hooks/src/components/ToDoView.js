@@ -47,10 +47,15 @@ const ToDoView = () => {
         store.setModel('TODOS', copyTodos); //update model store                
     };
 
-    const changeTodoName = async (index, newName) => {           
-        console.log("changeTodoName", index, newName);    
+    const changeTodoName = async (index, newName) => {    
         const copyTodos = [...todos];
         copyTodos[index].title = newName;
+        store.setModel('TODOS', copyTodos); //update model store  
+    };
+
+    const changeTodoCategory = async (index, newCategory) => {   
+        const copyTodos = [...todos];
+        copyTodos[index].category = newCategory;
         store.setModel('TODOS', copyTodos); //update model store  
     };
 
@@ -80,16 +85,24 @@ const ToDoView = () => {
                                 </td>
                                 <td>
                                     { todo.status == 'New' ? 
-                                        <button className="action-button" id={'save_' + i} onClick={saveTodo}>Save</button> :
+                                        <select className="todo-select" id={'category' + i} value={todo.category}  onChange={e => changeTodoCategory(i, e.target.value)}>
+                                            <option value="none">Select...</option>
+                                            {
+                                                categories.map((category, i) => {  
+                                                    return (
+                                                        <option value={category} key={i}>{category}</option>
+                                                    ) 
+                                                })
+                                            }
+                                        </select>
+                                         :
                                         <span>{todo.category}</span>  
                                     }                                     
                                 </td>
                                 <td>{todo.status}</td>
                                 <td>
                                     { todo.status == 'New' ? 
-                                        <select classNAme="todo-select" id={'category' + i} value={todo.category}>
-                                            {/* repeat on categories <option value="none">Select...</option>`; */}
-                                        </select>
+                                        <button className="action-button" id={'save_' + i} onClick={saveTodo}>Save</button>
                                         :
                                         <button className="action-button" id={'delete_' + i} onClick={deleteTodo}>Delete</button>   
                                     } 
