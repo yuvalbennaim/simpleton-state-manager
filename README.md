@@ -113,6 +113,6 @@ Switch to the /examples folder and view the README file
 ### webcomponents_node
 Example of a vanilla JS / WebComponents implementation running on Node.JS.
 
-### React
-A React example is under construction...
+### React_hooks
+A React example which wraps the SimpletonStateManagerin a Hook
 
