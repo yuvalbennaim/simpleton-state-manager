@@ -17,7 +17,7 @@ export default class SimpletonStateManager {
     get(target, prop, receiver) {
       return Reflect.get(target, prop, receiver);
     },
-    set(obj, prop, value) {getIn
+    set(obj, prop, value) {
       Reflect.set(obj, prop, value);
       SimpletonStateManager.instance.modelChanged(prop);
       return true;
