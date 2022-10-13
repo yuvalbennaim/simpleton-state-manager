@@ -44,8 +44,7 @@ export default class SimpletonStateManager {
       else if (!isObj) {
         return model;
       } if (isArr) {
-        const copy = JSON.parse(JSON.stringify(model));
-        return JSON.parse(JSON.stringify(model));
+        return [ ...model ];
       } 
       return { ...model };
     }

@@ -13,7 +13,7 @@ function App() {
     Ben: {
       name: "Ben",
       categories: ["House", "Cars", "School", "Work"],
-      priorites: ["High", "Medium", "Low"],
+      priorities: ["High", "Medium", "Low"],
       todos: [
         { "title": "Take out the garbage", "category": "House", "status": "open" },
         { "title": "Wash Car", "category": "Cars", "status": "closed" },
@@ -25,7 +25,7 @@ function App() {
     Jerry: {
       name: "Jerry",
       categories: ["House", "Cars", "Work"],
-      priorites: ["High", "Medium", "Low"],
+      priorities: ["High", "Medium", "Low"],
       todos: []
     }
   };
@@ -41,7 +41,7 @@ function App() {
     }).then(function(data) {
       store.setModel("TODOS", data.todos);
       store.setModel('CATEGORIES', data.categories);          
-      store.setModel('PRIORITES', data.categories);  
+      store.setModel('PRIORITES', data.priorities);  
     }); 
 	};
 

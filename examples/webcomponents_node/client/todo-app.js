@@ -66,7 +66,7 @@ class comp extends HTMLElement {
       const data = await response.json();
       this.store.setModel('TODOS', data.user.todos);   
       this.store.setModel('CATEGORIES', data.user.categories);          
-      this.store.setModel('PRIORITES', data.user.categories);  
+      this.store.setModel('PRIORITES', data.user.priorities);  
     }
   }
 
