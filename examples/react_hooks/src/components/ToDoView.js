@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import useStateStore from '../hooks/useStateStore';
+import { RenderCounterDisplay, useRenderCounter } from  "../hooks/useRenderCounter";
 import ToDoHeader from "./ToDoHeader";
 
 const ToDoView = () => {
     const store = useStateStore();
 	const [todos, setTodos] = useState([]);
     const [categories, setCategories] = useState([]);
+    const [renderCount, increaseFn] = useRenderCounter();
 
     useEffect(() => {    
         store.subscribe('TODOS', 'todo-view', (model) => {
@@ -59,9 +61,11 @@ const ToDoView = () => {
         store.setModel('TODOS', copyTodos); //update model store  
     };
 
+    increaseFn();
+
 	return (
 		<div className="view-wrapper">
-            <ToDoHeader></ToDoHeader>
+            <ToDoHeader></ToDoHeader>            
 
 			{todos.length == 0 ?
                 <h3>You have nothing in your To Do list</h3> :
@@ -115,6 +119,8 @@ const ToDoView = () => {
             }
 
             <button className="add-button" id="addTaskButton"  onClick={addTodo}>Add ToDo</button>
+
+            <RenderCounterDisplay renderTitle="ToDoView" renderCount={renderCount} renderStyle={{color: "red", display: "block", fontSize: "10px"}}/>
 		</div>
 	)
 };
