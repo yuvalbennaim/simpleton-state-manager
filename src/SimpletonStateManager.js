@@ -83,7 +83,7 @@ export default class SimpletonStateManager {
   }
 
   modelChanged(modelName) {
-    const value = this.modelsProxy[modelName];
+    const value = this.getModel(modelName);
     const modelSubscribers = this.#subscribers[modelName];
 
     if (modelSubscribers) {
