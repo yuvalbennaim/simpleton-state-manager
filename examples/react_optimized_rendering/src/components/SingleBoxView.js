@@ -1,21 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import useStateStore from '../hooks/useStateStore';
-import { RenderCounterDisplay, useRenderCounter } from  "../hooks/useRenderCounter";
+import { useRenderCounter } from  "../hooks/useRenderCounter";
+import { Chart } from "react-google-charts";
 
 const SingleBoxView = (props) => {
     const store = useStateStore();
 	const [box, setBox] = useState(props.box);
     const [renderCount, increaseFn] = useRenderCounter();
-    const bid = props.bid;
 
     useEffect(() => { 
         setBox(props.box);
 
-        store.subscribe(bid, bid, (model) => {
-            const bx = store.getModel(bid);
+        store.subscribe(box.id, box.id, (model) => {
+            const bx = store.getModel(box.id);
             setBox(bx);
         });
     }, []);
+
+    // const data = [ //chart data
+    //     ["Element", "Density", { role: "style" }],
+    //     ["Copper", 8.94, "#b87333"], // RGB value
+    //     ["Silver", 10.49, "silver"], // English color name
+    //     ["Gold", 19.3, "gold"],
+    //     ["Platinum", 21.45, "color: #e5e4e2"], // CSS-style declaration
+    // ];
 
     const boxClicked = (e) => {    
         const colors = store.getModel("COLORS"); 
@@ -24,6 +32,9 @@ const SingleBoxView = (props) => {
         const clr = colors[randColor];
         box.color = clr;
         store.setModel(box.id, box);   
+
+        // const boxes = store.getModel("BOXES"); 
+        // store.setModel("BOXES", [...boxes]);
     };
 
     increaseFn();
@@ -36,6 +47,7 @@ const SingleBoxView = (props) => {
             <div className="box" style={{backgroundColor: `${box.color}`}} onClick={boxClicked}>
                 <div>Box {box.id}</div>
                 <div>Render {renderCount.current}</div>
+                {/* <Chart chartType="ColumnChart" width="100%" height="400px" data={data} /> */}
             </div>
         )
     }

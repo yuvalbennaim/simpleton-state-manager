@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import useStateStore from '../hooks/useStateStore';
-import { RenderCounterDisplay, useRenderCounter } from  "../hooks/useRenderCounter";
+import { useRenderCounter } from  "../hooks/useRenderCounter";
 import SingleBoxView from "./SingleBoxView";
 
 const AllBoxesView = () => {
@@ -14,7 +14,7 @@ const AllBoxesView = () => {
 
         store.subscribe('BOXES', 'BoxesView', (model) => {
             console.log("BOXES Model changed", model);
-            setBoxes([...model]);
+            setBoxes(model);
         });
     }, []);
 
@@ -26,7 +26,7 @@ const AllBoxesView = () => {
         const clr = colors[randColor];
         bx.color = clr;
         boxes[randBox] = bx;
-        store.setModel("BOXES", boxes);
+        store.setModel("BOXES", [...boxes]);
     };
 
     increaseFn();
@@ -44,7 +44,7 @@ const AllBoxesView = () => {
                     {
                         boxes.map((box, i) => {  
                             return (
-                                <SingleBoxView key={box.id} bid={box.id} box={box}></SingleBoxView>
+                                <SingleBoxView key={box.id} box={box}></SingleBoxView>
                             )
                         })
                     }

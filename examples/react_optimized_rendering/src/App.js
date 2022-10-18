@@ -27,7 +27,6 @@ function App() {
     const clr = colors[randColor];
     bx.color = clr;
     store.setModel(`BOX_${randBox}`, bx);
-    store.setModel("BOXES", boxes);
   }
   
 	useEffect(() => {
