@@ -1,0 +1,25 @@
+body {
+  text-align: center;
+  overflow: auto;
+  color: #fff;
+  font-family: monospace;
+  background-color: #444;
+  padding: 20px;
+}
+.box {
+  border: 1px solid rgb(221, 221, 221);
+  width: 200px;
+  height: auto;
+  display: inline-block;
+  padding: 5px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+.boxes-header {
+  color: yellow;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+.boxes-list {
+  text-align: left;
+}

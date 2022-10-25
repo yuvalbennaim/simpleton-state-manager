@@ -17,7 +17,7 @@ export default class SimpletonStateManager {
     get(target, prop, receiver) {
       return Reflect.get(target, prop, receiver);
     },
-    set(obj, prop, value) {getIn
+    set(obj, prop, value) {
       Reflect.set(obj, prop, value);
       SimpletonStateManager.instance.modelChanged(prop);
       return true;
@@ -44,8 +44,7 @@ export default class SimpletonStateManager {
       else if (!isObj) {
         return model;
       } if (isArr) {
-        const copy = JSON.parse(JSON.stringify(model));
-        return JSON.parse(JSON.stringify(model));
+        return [ ...model ];
       } 
       return { ...model };
     }
@@ -84,7 +83,7 @@ export default class SimpletonStateManager {
   }
 
   modelChanged(modelName) {
-    const value = this.modelsProxy[modelName];
+    const value = this.getModel(modelName);
     const modelSubscribers = this.#subscribers[modelName];
 
     if (modelSubscribers) {

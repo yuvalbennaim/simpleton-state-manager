@@ -1,9 +1,9 @@
 {
   "name": "simpleton-state-manager",
-  "version": "1.0.9",
+  "version": "1.0.7",
   "author": "Yuval Bennaim <yuvalbennaim@gmail.com>",
   "license": "ISC",
-  "homepage": "https://github.com/yuvalbennaim/simpleton-state-manager",
+  "homepage": "https://github.com/yuvalbennaim/simpleton-state-manager#readme",
   "description": "A Simple State Manager for WebApp UI",
   "dependencies": {},
   "scripts": {

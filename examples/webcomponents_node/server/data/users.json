@@ -2,7 +2,7 @@
 	{
 		"name": "Ben",
 		"categories": ["House", "Cars", "School", "Work"],
-		"priorites": ["High", "Medium", "Low"],
+		"priorities": ["High", "Medium", "Low"],
 		"todos": [
 			{ "title": "Take out the garbage", "category": "House", "status": "open" },
 			{ "title": "Wash Car", "category": "Cars", "status": "closed" },
@@ -14,7 +14,7 @@
 	{
 		"name": "Jerry",
 		"categories": ["House", "Cars", "Work"],
-		"priorites": ["High", "Medium", "Low"],
+		"priorities": ["High", "Medium", "Low"],
 		"todos": []
 	}
 ]
