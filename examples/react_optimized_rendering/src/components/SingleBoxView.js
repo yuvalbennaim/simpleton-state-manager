@@ -1,29 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import useStateStore from '../hooks/useStateStore';
+import useStateToStoreBinding from '../hooks/useStateToStoreBinding';
 import { useRenderCounter } from  "../hooks/useRenderCounter";
 import { Chart } from "react-google-charts";
 
 const SingleBoxView = (props) => {
     const store = useStateStore();
-	const [box, setBox] = useState(props.box);
+	const [box, setBox] = useStateToStoreBinding(props.box.id, props.box.id, []);
     const [renderCount, increaseFn] = useRenderCounter();
-
-    useEffect(() => { 
-        setBox(props.box);
-
-        store.subscribe(box.id, box.id, (model) => {
-            const bx = store.getModel(box.id);
-            setBox(bx);
-        });
-    }, []);
-
-    // const data = [ //chart data
-    //     ["Element", "Density", { role: "style" }],
-    //     ["Copper", 8.94, "#b87333"], // RGB value
-    //     ["Silver", 10.49, "silver"], // English color name
-    //     ["Gold", 19.3, "gold"],
-    //     ["Platinum", 21.45, "color: #e5e4e2"], // CSS-style declaration
-    // ];
 
     const boxClicked = (e) => {    
         const colors = store.getModel("COLORS"); 

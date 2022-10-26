@@ -1,22 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import useStateStore from '../hooks/useStateStore';
+import useStateToStoreBinding from '../hooks/useStateToStoreBinding';
 import { useRenderCounter } from  "../hooks/useRenderCounter";
 import SingleBoxView from "./SingleBoxView";
 
 const AllBoxesView = () => {
     const store = useStateStore();
-	const [boxes, setBoxes] = useState();
+    const [boxes, setBoxes] = useStateToStoreBinding('BOXES', 'AllBoxesView', []);
     const [renderCount, increaseFn] = useRenderCounter();
-
-    useEffect(() => { 
-        const bx = store.getModel("BOXES");
-        setBoxes(bx);
-
-        store.subscribe('BOXES', 'BoxesView', (model) => {
-            console.log("BOXES Model changed", model);
-            setBoxes(model);
-        });
-    }, []);
 
     const headerClicked = (e) => {  
         const colors = store.getModel("COLORS"); 

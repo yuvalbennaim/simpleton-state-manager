@@ -106,6 +106,19 @@ For the simplest use case all you need to do is to copy the SimpletonStatManager
 npm install simpleton-state-manager
 ```
 
+## React Hooks
+(Please see examples!)
+useStateStore - this is the basic hook and does nothing more than returning the instance 
+  ```javascript
+    const store = useStateStore();
+  ```
+
+useStateToStoreBinding - this is a more advanced hook that wraps the Model subscriptions and binds it to a local useState variable. When the underlying Model changes, the State variable does as well, and the Component is re-rendered based on the new state. you can provide an optional default value (third arg) if the model has not yet been created, and an optional allback function in case you need to prform some operation besides binding the state.
+
+  ```javascript
+    const [something, setSomething] = useStateToStoreBinding('MODELNAME', 'theComponentName', [], callback);
+  ```
+
 ## Examples
 
 Switch to the /examples folder and view the README file
@@ -114,5 +127,7 @@ Switch to the /examples folder and view the README file
 Example of a vanilla JS / WebComponents implementation running on Node.JS.
 
 ### React_hooks
-A React example which wraps the SimpletonStateManagerin a Hook
+A React example which wraps the SimpletonStateManager in a Hook
 
+### React_optimized_rendering
+A more advanced React example which wraps the SimpletonStateManager in several Hooks, and is geared to demonstrate how to optimize the rendering of Components based on very targeted Model changes, not brute force.
