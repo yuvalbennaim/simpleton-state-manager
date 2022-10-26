@@ -106,8 +106,8 @@ For the simplest use case all you need to do is to copy the SimpletonStatManager
 npm install simpleton-state-manager
 ```
 
-## React Hooks
-(Please see examples!)
+## React Hooks (Please see examples)
+
 useStateStore - this is the basic hook and does nothing more than returning the instance 
   ```javascript
     const store = useStateStore();
