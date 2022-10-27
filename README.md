@@ -113,7 +113,7 @@ useStateStore - this is the basic hook and does nothing more than returning the 
     const store = useStateStore();
   ```
 
-useStateToStoreBinding - this is a more advanced hook that wraps the Model subscriptions and binds it to a local useState variable. When the underlying Model changes, the State variable does as well, and the Component is re-rendered based on the new state. you can provide an optional default value (third arg) if the model has not yet been created, and an optional allback function in case you need to prform some operation besides binding the state.
+useStateToStoreBinding - this is a more advanced hook that wraps the Model subscriptions and binds it to a local useState variable. When the underlying Model changes, the State variable does as well, and the Component is re-rendered based on the new state. you can provide an optional default value (third arg) if the model has not yet been created, and an optional callback function in case you need to perform some operation besides binding the state.
 
   ```javascript
     const [something, setSomething] = useStateToStoreBinding('MODELNAME', 'theComponentName', [], callback);
