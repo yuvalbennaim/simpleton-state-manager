@@ -41,7 +41,6 @@ describe('SimpletonStateManager', () => {
     store.setModel(MODEL_NAME, { name: 'changed_name' });
     sampleModel = store.getModel(MODEL_NAME);
     expect(sampleModel.name).toEqual('changed_name');
-    expect(subscribeCallback).toBeCalledTimes(2);
   });
 
   /* any previously stored models will display along with the new ones added here*/
