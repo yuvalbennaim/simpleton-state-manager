@@ -60,9 +60,6 @@ A subscribrerKey is returned from the subscribe fucntion. You need to retain thi
     console.log('Model changed', modelName, subscriberName, model);
     //do whatever you want to do with this model like render the UI
   }));
-
-  //use the returned key when unsubscribing
-  store.unsubscribe(modelName, key);
 ```
 
 ### Notifying Subscribers
