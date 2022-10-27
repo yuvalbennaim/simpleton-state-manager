@@ -34,7 +34,7 @@ describe('SimpletonStateManager', () => {
   test('subscribe to model, get and set model', () => {
     const store = new SimpletonStateManager();
     const subscribeCallback = jest.fn();
-    store.subscribe(MODEL_NAME, 'name', subscribeCallback);
+    store.subscribe(MODEL_NAME, subscribeCallback);
     store.setModel(MODEL_NAME, { name: 'sample' });
     let sampleModel = store.getModel(MODEL_NAME);
     expect(sampleModel.name).toEqual('sample');

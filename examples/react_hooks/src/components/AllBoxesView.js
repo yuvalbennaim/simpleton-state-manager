@@ -17,7 +17,8 @@ const AllBoxesView = () => {
         const clr = colors[randColor];
         bx.color = clr;
         boxes[randBox] = bx;
-        store.setModel("BOXES", [...boxes]);
+        setBoxes(boxes);
+        store.setModel(`BOX_${randBox}`, bx);
     };
 
     increaseFn();
