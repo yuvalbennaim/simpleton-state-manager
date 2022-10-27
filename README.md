@@ -50,16 +50,19 @@ Use the SimpletonStateManager instance to explicitly obtain a clone of the store
 ### Subscribing to Model Changes
 
 To be notified when a model is created or modified, you subscribe to a model by it's name, provide a unique subscriber name and a callback function.
-The subscriber names must be **uniquely qualified** as sometimes you will have several instances of the same component in a list.
+
+A subscribrerKey is returned from the subscribe fucntion. You need to retain this key so that you can use it to unsubscribe.
 
 ```javascript
   const modelName = 'modelOne';
-  const subscriberName = 'myComponenentName';
 
-  store.subscribe(modelName, subscriberName, (model) => { 
+  const key = store.subscribe(modelName, (model) => { 
     console.log('Model changed', modelName, subscriberName, model);
     //do whatever you want to do with this model like render the UI
   }));
+
+  //use the returned key when unsubscribing
+  store.unsubscribe(modelName, key);
 ```
 
 ### Notifying Subscribers
@@ -79,7 +82,7 @@ Complete page reloads will always result in a new SimpletonStateManager instance
 You can unsubscribe by name:
 
 ```javascript
-  store.unsubscribe(modelName, subscriberName);
+  store.unsubscribe(modelName, key); //the key you received from subscribe()
 ```
 Or brute force to purge all data:
 
@@ -106,28 +109,27 @@ For the simplest use case all you need to do is to copy the SimpletonStatManager
 npm install simpleton-state-manager
 ```
 
-## React Hooks (Please see examples)
-
-useStateStore - this is the basic hook and does nothing more than returning the instance 
+## React Hooks
+(Please see examples!)
+**useStateStore** - this is the basic hook and does nothing more than returning the instance 
   ```javascript
     const store = useStateStore();
   ```
 
-useStateToStoreBinding - this is a more advanced hook that wraps the Model subscriptions and binds it to a local useState variable. When the underlying Model changes, the State variable does as well, and the Component is re-rendered based on the new state. you can provide an optional default value (third arg) if the model has not yet been created, and an optional callback function in case you need to perform some operation besides binding the state.
+**useStateToStoreBinding** - this is a more advanced hook that wraps the Model subscriptions and binds it to a local useState variable. When the underlying Model changes, the State variable does as well, and the Component is re-rendered based on the new state. you can provide an optional default value (second arg) if the model has not yet been created, and an optional callback function in case you need to perform some operation besides binding the state.
+
+This hook also auto-unsbscribes when the component is dismounted.
 
   ```javascript
-    const [something, setSomething] = useStateToStoreBinding('MODELNAME', 'theComponentName', [], callback);
+    const [something, setSomething] = useStateToStoreBinding('MODELNAME', [], callback);
   ```
 
 ## Examples
 
-Switch to the /examples folder and view the README file
+Switch to the /examples folder and view the README file and run npm install, then npm start ,on any examples folder.
 
 ### webcomponents_node
 Example of a vanilla JS / WebComponents implementation running on Node.JS.
 
 ### React_hooks
-A React example which wraps the SimpletonStateManager in a Hook
-
-### React_optimized_rendering
-A more advanced React example which wraps the SimpletonStateManager in several Hooks, and is geared to demonstrate how to optimize the rendering of Components based on very targeted Model changes, not brute force.
+A React example which wraps the SimpletonStateManager in a Hook and is geared to demonstrate how to optimize the rendering of Components based on very targeted Model changes, not brute force.

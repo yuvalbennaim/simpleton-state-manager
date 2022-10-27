@@ -64,9 +64,11 @@ export default class SimpletonStateManager {
     return this.#subscribers[modelName];
   }
 
-  subscribe(modelName, key, callback) {
+  subscribe(modelName, callback) {
     const modelSubscribers = this.subscribers(modelName);
-    modelSubscribers[`${key}`] = callback;
+    const key = modelSubscribers.push(callback) - 1;
+    // console.log('subscribe', modelName, callback, key);
+    return key;
   }
 
   unsubscribe(modelName, key) {

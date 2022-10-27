@@ -6,7 +6,7 @@ class comp extends HTMLElement {
     this.attachShadow({mode: 'open'});
     this.store = new SimpletonStateManager(); 
 
-    this.store.subscribe('USER', 'todo-app', (model) => { // subscribe to the user model and re-render when it updates
+    this.key = this.store.subscribe('USER', (model) => { // subscribe to the user model and re-render when it updates
       console.log('USER Model changed', model);
       this.getTodos();
       this.render();
@@ -51,22 +51,29 @@ class comp extends HTMLElement {
     this.render();
   }
 
+  disconnectedCallback() {
+    this.store.unsubscribe('USER', this.key);
+  }
+
   async getTodos() {
     this.store.setModel('TODOS', null);    
     const user = this.store.getModel("USER");
-    let url = `/todos?username=${user.name}`;
 
-    const request = new Request(url, {
-        method: 'GET'
-    });
+    if(user != null) {
+      let url = `/todos?username=${user.name}`;
 
-    const response = await fetch(request);
+      const request = new Request(url, {
+          method: 'GET'
+      });
 
-    if (response.ok) {
-      const data = await response.json();
-      this.store.setModel('TODOS', data.user.todos);   
-      this.store.setModel('CATEGORIES', data.user.categories);          
-      this.store.setModel('PRIORITES', data.user.priorities);  
+      const response = await fetch(request);
+
+      if (response.ok) {
+        const data = await response.json();
+        this.store.setModel('TODOS', data.user.todos);   
+        this.store.setModel('CATEGORIES', data.user.categories);          
+        this.store.setModel('PRIORITES', data.user.priorities);  
+      }
     }
   }
 

@@ -6,7 +6,7 @@ import SingleBoxView from "./SingleBoxView";
 
 const AllBoxesView = () => {
     const store = useStateStore();
-    const [boxes, setBoxes] = useStateToStoreBinding('BOXES', 'AllBoxesView', []);
+    const [boxes, setBoxes] = useStateToStoreBinding('BOXES', []);
     const [renderCount, increaseFn] = useRenderCounter();
 
     const headerClicked = (e) => {  

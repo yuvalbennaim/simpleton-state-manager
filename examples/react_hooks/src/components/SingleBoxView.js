@@ -6,7 +6,7 @@ import { Chart } from "react-google-charts";
 
 const SingleBoxView = (props) => {
     const store = useStateStore();
-	const [box, setBox] = useStateToStoreBinding(props.box.id, props.box.id, []);
+	const [box, setBox] = useStateToStoreBinding(props.box.id, []);
     const [renderCount, increaseFn] = useRenderCounter();
 
     const boxClicked = (e) => {    

@@ -1,65 +1,51 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import useStateStore from './hooks/useStateStore';
 import './App.css';
-import LoginForm from "./components/LoginForm";
-import ToDoView from "./components/ToDoView";
+import AllBoxesView from "./components/AllBoxesView";
 
 function App() {
-
   const store = useStateStore();
 	const [user, setUser] = useState();
+  const intervaldRef = useRef(false);
 
-  const mockData = { //emulate API call to get the ToDo list
-    Ben: {
-      name: "Ben",
-      categories: ["House", "Cars", "School", "Work"],
-      priorities: ["High", "Medium", "Low"],
-      todos: [
-        { "title": "Take out the garbage", "category": "House", "status": "open" },
-        { "title": "Wash Car", "category": "Cars", "status": "closed" },
-        { "title": "Do Laundry", "category": "House", "status": "open" },
-        { "title": "Do Homewoork", "category": "School", "status": "open" },
-        { "title": "File Report", "category": "Work", "status": "open" }    
-      ]
-    },
-    Jerry: {
-      name: "Jerry",
-      categories: ["House", "Cars", "Work"],
-      priorities: ["High", "Medium", "Low"],
-      todos: []
-    }
-  };
+  const colors = ["red", "orange", "green", "blue", "pink"];
+  store.setModel("COLORS", colors); 
+  const boxes = [];
 
-  store.setModel("MOCK_DATA", mockData);
+  for(let i = 0; i < 30; i++) {
+    const bx = {id: `BOX_${i}`, color: "#888"};
+    boxes.push(bx);
+    store.setModel(`BOX_${i}`, bx);
+  }
+
+  store.setModel("BOXES", boxes);  
+
+  // const intervalRunner = (e) => {  //emulate a constant WebSocket push of updates
+  //   const randBox = parseInt(Math.random() * 2);
+  //   const bx = boxes[randBox];
+  //   const randColor = parseInt(Math.random() * colors.length);
+  //   const clr = colors[randColor];
+  //   bx.color = clr;
+  //   store.setModel(`BOX_${randBox}`, bx);
+  // }
   
-
-	const getTodos = (user) => {
-    new Promise((resolveFunc, rejectFunc) => {
-      let data = mockData[user];
-      console.log("getTodos", user, data);
-      setTimeout(() => { resolveFunc(data); }, 1000);
-    }).then(function(data) {
-      store.setModel("TODOS", data.todos);
-      store.setModel('CATEGORIES', data.categories);          
-      store.setModel('PRIORITES', data.priorities);  
-    }); 
-	};
-
 	useEffect(() => {
-    console.log('App mounted...');
+    if (intervaldRef.current) {
+      return;
+    }
+    else {
+      console.log('App mounted...');
+      intervaldRef.current = true;
 
-    store.subscribe('USER', 'todo-app', (model) => { // subscribe to the user model and re-render when it updates
-      console.log('USER Model changed', model);
-      setUser(model);
-      getTodos(model);    
-    });
+      // setInterval(() => {
+      //   intervalRunner();
+      // }, 5000);
+    }
 	}, []);
 
 	return (
-		<div className="page-wrapper">		
-      { 
-        user == null ? <LoginForm></LoginForm> : <ToDoView></ToDoView>
-      }
+		<div>		
+       <AllBoxesView></AllBoxesView>
     </div>
 	);
 }
