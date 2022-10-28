@@ -20,14 +20,14 @@ function App() {
 
   store.setModel("BOXES", boxes);  
 
-  // const intervalRunner = (e) => {  //emulate a constant WebSocket push of updates
-  //   const randBox = parseInt(Math.random() * 2);
-  //   const bx = boxes[randBox];
-  //   const randColor = parseInt(Math.random() * colors.length);
-  //   const clr = colors[randColor];
-  //   bx.color = clr;
-  //   store.setModel(`BOX_${randBox}`, bx);
-  // }
+  const intervalRunner = (e) => {  //emulate a constant WebSocket push of updates
+    const randBox = parseInt(Math.random() * boxes.length);
+    const bx = boxes[randBox];
+    const randColor = parseInt(Math.random() * colors.length);
+    const clr = colors[randColor];
+    bx.color = clr;
+    store.setModel(`BOX_${randBox}`, bx);
+  }
   
 	useEffect(() => {
     if (intervaldRef.current) {
@@ -37,9 +37,9 @@ function App() {
       console.log('App mounted...');
       intervaldRef.current = true;
 
-      // setInterval(() => {
-      //   intervalRunner();
-      // }, 5000);
+      setInterval(() => {
+        intervalRunner();
+      }, 5000);
     }
 	}, []);
 

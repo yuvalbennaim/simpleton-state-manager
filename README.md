@@ -1,27 +1,27 @@
 # Simpleton State Manager
 
 A super simple State Manager for your modern Web Application.
-In fact, it's so simple, that simple is in it's name.
+In fact, it's so simple, that simple is in its name.
 
-Whether you use an MVC framework such as React, Angular, Vue, WebComponents or plain Vanilla Javascript,
+Whether you use an MVC framework such as React, Angular, Vue, WebComponents or plain Vanilla JavaScript,
 this universal, lightweight solution is all you need to manage your Application's Frontend state, no matter how complex it gets.
 
 For any questions, comments or complaints: **yuvalbenniam@gmail.com**
 
-## The Fundametals
+## The Fundamentals
 
 This State Manager is a plain JavaScript class which follows the Singleton Design Pattern.
 There is ever only a single instance of the class that is constructed per a browser window context.
-Every invokation of the constructor returns the very same object reference.
+Every invocation of the constructor returns the very same object reference.
 
-The Models are stored in the class's private member (identified by the "#" prefix) that is protectd from the outside code and is accessed exclusively through a Proxy object.
+The Models are stored in the class's private member (identified by the "#" prefix) that is protected from the outside code and is accessed exclusively through a Proxy object.
 
-Once you instanciate a SimpletonStateManager you can use it to store an almost limitless amount of individual Models, 
+Once you instantiate a SimpletonStateManager you can use it to store an almost limitless amount of individual Models, 
 retrieve them as needed and subscribe to their changes.
 
 You can even store functions as models.
 
-### Instanciating a SimpletonStateManager
+### Instantiating a SimpletonStateManager
 
 ```javascript
   const store = new SimpletonStateManager(); //everyone gets the same static instance
@@ -29,7 +29,7 @@ You can even store functions as models.
 
 ### Setting a Model
 
-Models are any Javascript Entity (Object, Array, Fucntion or primitive)
+Models are any JavaScript Entity (Object, Array, Function or primitive)
 Whether you construct a new Model, or obtain it from an API call or by any other means you use the SimpletonStateManager to register this Model with a **unique name**.
 Be advised, there is no "updateModel" operation. Registering a new Model with the same name will overwrite the existing Model and notify all subscribers.
 
@@ -40,7 +40,7 @@ Be advised, there is no "updateModel" operation. Registering a new Model with th
 
 ### Getting a Model
 
-Use the SimpletonStateManager instance to explicitly obtain a clone of the stored Model. The stored models are immutable and you are never getting the actual reference:
+Use the SimpletonStateManager instance to explicitly obtain a clone of the stored Model. The stored models are immutable, and you are never getting the actual reference:
 
 ```javascript
   const sampleModel = store.getModel('modelOne');
@@ -51,7 +51,7 @@ Use the SimpletonStateManager instance to explicitly obtain a clone of the store
 
 To be notified when a model is created or modified, you subscribe to a model by it's name, provide a unique subscriber name and a callback function.
 
-A subscribrerKey is returned from the subscribe fucntion. You need to retain this key so that you can use it to unsubscribe.
+A subscribrerKey is returned from the subscribe function. You need to retain this key so that you can use it to unsubscribe.
 
 ```javascript
   const modelName = 'modelOne';
@@ -113,7 +113,7 @@ npm install simpleton-state-manager
     const store = useStateStore();
   ```
 
-**useStateToStoreBinding** - this is a more advanced hook that wraps the Model subscriptions and bi-directionally binds it to a local useState variable. When the underlying Model changes, the State variable does as well and vice-cersa. The Component is thenre-rendered based on the new state. You can provide an optional default value (second arg) if the model has not yet been created, and an optional callback function in case you need to perform some operation besides binding the state.
+**useStateToStoreBinding** - this is a more advanced hook that wraps the Model subscriptions and bi-directionally binds it to a local useState variable. When the underlying Model changes, the State variable does as well and vice-versa. The Component is then re-rendered based on the new state. You can provide an optional default value (second arg) if the model has not yet been created, and an optional callback function in case you need to perform some operation besides binding the state.
 
 This hook also automatically unsubscribes when the component is dismounted.
 
@@ -130,3 +130,11 @@ Example of a vanilla JS / WebComponents implementation running on Node.JS.
 
 ### React_hooks
 A React example which wraps the SimpletonStateManager in a Hook and is geared to demonstrate how to optimize the rendering of Components based on very targeted Model changes, not brute force.
+
+An Interval starts and every 5 seconds will change a random box's color. Only the affected box's render counter will increment.
+
+Click on a Box to randomly change its color while only re-rendering the box itself (the render-counter will only increment for the clicked box).
+
+Click on the title to change a random box's color and re-render all the boxes.
+
+
