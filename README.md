@@ -113,9 +113,9 @@ npm install simpleton-state-manager
     const store = useStateStore();
   ```
 
-**useStateToStoreBinding** - this is a more advanced hook that wraps the Model subscriptions and binds it to a local useState variable. When the underlying Model changes, the State variable does as well, and the Component is re-rendered based on the new state. you can provide an optional default value (second arg) if the model has not yet been created, and an optional callback function in case you need to perform some operation besides binding the state.
+**useStateToStoreBinding** - this is a more advanced hook that wraps the Model subscriptions and bi-directionally binds it to a local useState variable. When the underlying Model changes, the State variable does as well and vice-cersa. The Component is thenre-rendered based on the new state. You can provide an optional default value (second arg) if the model has not yet been created, and an optional callback function in case you need to perform some operation besides binding the state.
 
-This hook also auto-unsbscribes when the component is dismounted.
+This hook also automatically unsubscribes when the component is dismounted.
 
   ```javascript
     const [something, setSomething] = useStateToStoreBinding('MODELNAME', [], callback);
