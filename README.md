@@ -138,3 +138,4 @@ Click on a Box to randomly change its color while only re-rendering the box itse
 Click on the title to change a random box's color and re-render all the boxes.
 
 
+Enjoy a Redux-free life!
